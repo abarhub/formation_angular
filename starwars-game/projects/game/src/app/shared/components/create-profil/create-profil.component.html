@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+    <div class="form-group">
+        <label for="typeForce">Type de force</label> <input formControlName="typeForce" name="typeForce" type="radio" value="obscure"/> Coté obscure<br/>
+                    <input formControlName="typeForce" name="typeForce" type="radio" value="lumineux"/> Coté lumineux<br/>
+</div>
+<div class="form-group">
+    <label for="prenom">Prénom</label> <input formControlName="prenom" name="prenom" type="text" class="form-control" style="max"/> <br/>
+</div>
+<div class="form-group">
+    <label for="photo">Photo</label> <input formControlName="photo" name="photo" type="file" /> <br/>
+</div>
+<div class="form-group">
+    <label for="arme">Arme</label> 
+    <select formControlName="armeSelectionne" name="arme" class="form-control" style="max-width: 300px;">
+        <option *ngFor="let armes of listeArmes" [ngValue]="armes">{{ armes }}</option>
+    </select> <br/>
+    </div>
+    
+    <button (click)="submit()"class="btn btn-primary">Submit</button>
+
+  </form>
