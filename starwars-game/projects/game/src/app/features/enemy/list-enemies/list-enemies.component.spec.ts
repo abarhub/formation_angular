@@ -1,24 +1,35 @@
+import { HttpClientModule } from '@angular/common/http';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EnemyService } from '../services/enemy.service';
 
 import { ListEnemiesComponent } from './list-enemies.component';
 
 fdescribe('ListEnemiesComponent', () => {
   let component: ListEnemiesComponent;
   let fixture: ComponentFixture<ListEnemiesComponent>;
+  let service: EnemyService;
+  let mock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ListEnemiesComponent ],
-      imports: [],
+      imports: [
+        // HttpClientModule
+        HttpClientTestingModule
+      ],
       providers: []
     })
     .compileComponents();
   });
 
   beforeEach(() => {
+    service=TestBed.inject(EnemyService);
+    mock=TestBed.inject(HttpTestingController);
     fixture = TestBed.createComponent(ListEnemiesComponent);
     component = fixture.componentInstance;
     // fixture.detectChanges();
+    //fixture.autoDetectChanges(true); // ne détecte pas tous les changements
   });
 
   it('should create', () => {
@@ -26,8 +37,21 @@ fdescribe('ListEnemiesComponent', () => {
   });
 
   it('should get list of 2 enemies', () => {
+    // Arrange
+    // component.enemies= ['1','2'];
     fixture.detectChanges();
 
+    const stubRequest=mock.expectOne('uneurl');
+
+    stubRequest.flush([
+        {id:1, name: '1235'},
+        {id:2, name: '1236'}
+    ]);
+
+    // Act
+    fixture.detectChanges();
+
+    // Assert
     const domHtml = fixture.nativeElement;
 
     const table = domHtml.querySelector('table.enemies');
