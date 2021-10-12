@@ -12,12 +12,17 @@ import { BoolToColorDirective } from './shared/directives/bool-to-color.directiv
 import { UserModule } from './features/user/user.module';
 import { ListProfileComponent } from './features/user-test/list-profile/list-profile.component';
 import { EnemyModule } from './features/enemy/enemy.module';
+import { TestDiComponent } from './features/tests/test/test-di/test-di.component';
+import { TestModule } from './features/tests/test/test.module';
+import { TestService } from './shared/services/test.service';
+import { RxjsobservableComponent } from './shared/components/rxjsobservable/rxjsobservable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideBarComponent
+    SideBarComponent,
+    RxjsobservableComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +30,12 @@ import { EnemyModule } from './features/enemy/enemy.module';
     HttpClientModule,
     GameModule,
     UserModule,
-    EnemyModule
+    EnemyModule,
+    TestModule
   ],
-  providers: [],
+  providers: [
+    TestService
+  ],
   bootstrap: [AppComponent, HeaderComponent, SideBarComponent]
 })
 export class AppModule { }
