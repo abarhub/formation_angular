@@ -35,7 +35,7 @@ export class CreateProfileComponent implements OnInit {
   }
 
   calculer() {
-    console.info('appel');
+    //console.info('appel');
   }
 
   ngOnInit(): void {
