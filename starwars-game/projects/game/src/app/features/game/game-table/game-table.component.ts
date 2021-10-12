@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { GameDto } from '../../../core/models/game.dto';
 import { RechercheService } from '../../../shared/services/recherche.service';
 
@@ -9,19 +9,24 @@ import { RechercheService } from '../../../shared/services/recherche.service';
   styleUrls: ['./game-table.component.css'],
 //   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GameTableComponent implements OnInit {
+export class GameTableComponent implements OnInit,OnDestroy {
   @Input() games: GameDto[] = [];
 
   toto !: Observable<string>;
   critereRecherche:string='';
+  tmp !: Subscription;
 
   constructor(private rechercheService:RechercheService) { }
 
   ngOnInit(): void {
     this.toto=this.rechercheService.get();
-    this.toto.subscribe(recherche => {
+    this.tmp=this.toto.subscribe(recherche => {
       this.critereRecherche=recherche;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.tmp.unsubscribe();
   }
 
 

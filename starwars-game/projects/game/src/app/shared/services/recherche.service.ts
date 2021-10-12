@@ -17,4 +17,8 @@ export class RechercheService {
   recherche(s: string): void {
     this.critereRecherche.next(s);
   }
+
+  unsubscribe(): void {
+    this.critereRecherche.complete();
+  }
 }
