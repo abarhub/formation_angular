@@ -5,7 +5,11 @@ import { GameListComponent } from './features/game/game-list/game-list.component
 const routes: Routes = [{
   path: 'games',
   component: GameListComponent
-}];
+},{
+  path: 'enemies',
+  loadChildren: () => import('./features/enemy/enemy.module')
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

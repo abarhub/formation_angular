@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListEnemiesComponent } from './list-enemies/list-enemies.component';
+import { EnemyRoutingModule } from './enemy-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { ListEnemiesComponent } from './list-enemies/list-enemies.component';
     ListEnemiesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    EnemyRoutingModule
   ],
   exports: [
     ListEnemiesComponent

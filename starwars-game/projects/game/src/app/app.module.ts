@@ -35,7 +35,7 @@ import { EnemiesEffect } from './features/enemy/store/effetcs/enemies.effect';
     FormsModule,
     GameModule,
     UserModule,
-    EnemyModule,
+    //EnemyModule,
     TestModule,
     StoreModule.forRoot(reducers, {
       metaReducers
