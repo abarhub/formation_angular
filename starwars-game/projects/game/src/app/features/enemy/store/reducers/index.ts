@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { EnemyDto } from "projects/game/src/app/core/models/enemy";
-import { addRandomEnemyAction } from "../actions/enemies.actions";
+import { addRandomEnemyAction, updateStateWithEnemiesAction } from "../actions/enemies.actions";
 
 export interface EnemyState {
   items: EnemyDto[]
@@ -18,6 +18,11 @@ export const defaultState: EnemyState = {
 
 export const reducer = createReducer(
   defaultState,
+  on(updateStateWithEnemiesAction, (state, action)=> {
+    return { 
+      items: action.enemies 
+    }
+  }),
   on(addRandomEnemyAction, (state, action) => {
     const newArray = [...state.items];
 

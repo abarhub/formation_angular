@@ -18,6 +18,8 @@ import { ObservableComponent } from './shared/components/observable/observable.c
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { EnemiesEffect } from './features/enemy/store/effetcs/enemies.effect';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,10 @@ import { reducers, metaReducers } from './reducers';
     TestModule,
     StoreModule.forRoot(reducers, {
       metaReducers
-    })
+    }),
+    EffectsModule.forRoot([
+      EnemiesEffect
+    ])
   ],
   providers: [
     TestService

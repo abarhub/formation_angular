@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { EnemyDto } from '../../../core/models/enemy';
 import { ApplicationState } from '../../../reducers';
 import { EnemyService } from '../services/enemy.service';
-import { addRandomEnemyAction } from '../store/actions/enemies.actions';
+import { addRandomEnemyAction, getAllEnemiesFromApiAction } from '../store/actions/enemies.actions';
 import { selectAllEnemies } from '../store/selectors/enemies.selector';
 
 @Component({
@@ -21,13 +21,17 @@ export class ListEnemiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.store.dispatch(getAllEnemiesFromApiAction());
+
     this.store
     .pipe(
       select(selectAllEnemies)
     )
     .subscribe(items => this.enemies = items);
 
-    this.service.getAll().subscribe(items => this.enemies = items);
+    //this.service.getAll().subscribe(items => this.enemies = items);
+
   }
 
   addNewOne() {
