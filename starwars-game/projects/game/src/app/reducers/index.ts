@@ -8,14 +8,18 @@ import {
 import { environment } from '../../environments/environment';
 import { EnemyState } from '../features/enemy/store/reducers';
 import * as enemies from '../features/enemy/store/reducers';
+import { GameState } from '../features/game/store/reducer';
+import * as games from '../features/game/store/reducer';
 
 
 export interface ApplicationState {
-  enemies: EnemyState
+  enemies: EnemyState,
+  games: GameState
 }
 
 export const reducers: ActionReducerMap<ApplicationState> = {
-  enemies: enemies.reducer
+  enemies: enemies.reducer,
+  games: games.reducer
 };
 
 
